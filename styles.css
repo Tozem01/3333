@@ -6,94 +6,170 @@
 }
 
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Arial', sans-serif;
     background-color: #f5f5f5;
+    overflow-x: hidden;
     position: relative;
 }
 
-.container {
-    width: 90%;
-    margin: 0 auto;
+/* Анимация самолета на фоне */
+.airplane-animation {
+    position: absolute;
+    top: 50%;
+    left: -200px;
+    width: 100%;
+    height: 100%;
+    background-image: url('airplane.svg'); /* Замените на свой файл самолета */
+    background-size: contain;
+    background-repeat: no-repeat;
+    animation: flyAcross 20s linear infinite;
 }
 
-/* Кнопки */
-button, .button {
-    background-color: #007bff;
+@keyframes flyAcross {
+    0% { left: -200px; }
+    100% { left: 100%; }
+}
+
+/* Навигационное меню */
+nav {
+    background-color: #333;
+    padding: 10px 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+nav h1 {
     color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-top: 10px;
-    text-decoration: none;
+    font-size: 2rem;
+    margin-left: 20px;
     display: inline-block;
 }
 
-button:hover, .button:hover {
+nav ul {
+    display: inline-block;
+    list-style: none;
+    float: right;
+    margin-right: 20px;
+}
+
+nav ul li {
+    display: inline-block;
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    transition: color 0.3s;
+}
+
+nav ul li a:hover {
+    color: #007bff;
+}
+
+/* Главный баннер */
+.hero {
+    background: url('hero-bg.jpg') no-repeat center center/cover;
+    color: white;
+    text-align: center;
+    padding: 150px 0;
+}
+
+.hero h2 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+}
+
+.hero p {
+    font-size: 1.5rem;
+    margin-bottom: 30px;
+}
+
+.hero .button {
+    background-color: #007bff;
+    color: white;
+    padding: 15px 25px;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    text-decoration: none;
+}
+
+.hero .button:hover {
     background-color: #0056b3;
 }
 
-/* Основной контент */
-header {
-    background-color: #007bff;
-    color: white;
-    padding: 40px 0;
+/* Секции с предложениями и отзывами */
+.offers, .reviews {
+    padding: 80px 0;
+    background-color: white;
     text-align: center;
 }
 
-header h1 {
-    font-size: 3em;
+.offers h2, .reviews h2 {
+    font-size: 2.5rem;
+    margin-bottom: 30px;
 }
 
-header p {
-    font-size: 1.2em;
-}
-
-/* Дополнительные секции */
-.deals, .best-destinations, .reviews {
-    padding: 40px 0;
-}
-
-.deal-cards, .destination-cards, .review-cards {
+.offer-cards, .review-cards {
     display: flex;
+    justify-content: space-between;
     gap: 20px;
     flex-wrap: wrap;
-    justify-content: space-between;
 }
 
-.deal-card, .destination-card, .review-card {
-    background-color: white;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    width: 30%;
+.offer-card, .review-card {
+    background-color: #fff;
     padding: 20px;
-    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    width: 30%;
+    transition: transform 0.3s;
 }
 
-.deal-card img, .destination-card img {
+.offer-card:hover, .review-card:hover {
+    transform: scale(1.05);
+}
+
+.offer-card img, .review-card img {
     width: 100%;
-    height: auto;
     border-radius: 8px;
 }
 
+.offer-card h3, .review-card h3 {
+    margin: 10px 0;
+}
+
+/* Подвал */
 footer {
     background-color: #333;
     color: white;
     text-align: center;
-    padding: 20px 0;
-    position: absolute;
+    padding: 20px;
+    position: relative;
     bottom: 0;
     width: 100%;
 }
 
-.footer-link {
+footer ul {
+    list-style: none;
+    margin-top: 10px;
+}
+
+footer ul li {
+    display: inline-block;
+    margin: 0 15px;
+}
+
+footer ul li a {
     color: white;
     text-decoration: none;
+    font-size: 1.2rem;
 }
 
-.footer-link:hover {
+footer ul li a:hover {
     text-decoration: underline;
 }
-
-
-
