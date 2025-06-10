@@ -3,112 +3,72 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SkyWings - Мир авиаперелётов</title>
+    <title>SkyJet - Авиаперелёты нового поколения</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Orbitron:wght@700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css">
     <style>
         :root {
-            --primary: #0066cc;
-            --secondary: #003366;
-            --accent: #ff9900;
+            --primary: #ff3e7f;
+            --secondary: #00c3ff;
+            --accent: #ffd300;
+            --dark: #0a1128;
             --light: #f8f9fa;
-            --dark: #212529;
-            --transition: all 0.3s ease;
+            --gradient: linear-gradient(135deg, var(--primary), var(--secondary));
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
         }
         
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         
         body {
-            background-color: var(--light);
-            color: var(--dark);
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--dark);
+            color: var(--light);
             overflow-x: hidden;
             line-height: 1.6;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(255, 62, 127, 0.15) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(0, 195, 255, 0.15) 0%, transparent 20%);
         }
         
-        /* Анимации */
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
-        }
-        
-        @keyframes fly {
-            0% { transform: translateX(-100px) rotate(0deg); }
-            100% { transform: translateX(calc(100vw + 100px)) rotate(5deg); }
-        }
-        
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); opacity: 1; }
-            50% { transform: scale(1.05); opacity: 0.9; }
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        @keyframes ripple {
-            0% { transform: scale(0.8); opacity: 1; }
-            100% { transform: scale(2.5); opacity: 0; }
-        }
-        
-        /* Базовая стилизация */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        
-        section {
-            padding: 80px 0;
-        }
-        
-        /* Шапка */
+        /* Шапка сайта */
         header {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
-            padding: 1rem 0;
+            background: rgba(10, 17, 40, 0.9);
+            backdrop-filter: blur(10px);
             position: fixed;
             width: 100%;
+            top: 0;
             z-index: 1000;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            transition: var(--transition);
-        }
-        
-        header.scrolled {
-            padding: 0.5rem 0;
-            background: rgba(0, 51, 102, 0.95);
-            backdrop-filter: blur(10px);
-        }
-        
-        .header-container {
+            padding: 20px 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            box-shadow: var(--shadow);
+            border-bottom: 2px solid var(--accent);
         }
         
         .logo {
             display: flex;
             align-items: center;
-            animation: fadeIn 1s ease-out;
-            text-decoration: none;
         }
         
         .logo i {
-            font-size: 2rem;
-            margin-right: 0.5rem;
-            color: var(--accent);
-            transition: var(--transition);
+            color: var(--secondary);
+            font-size: 2.5rem;
+            margin-right: 10px;
+            text-shadow: 0 0 15px var(--secondary);
         }
         
         .logo h1 {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: white;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2rem;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 2px;
         }
         
         nav ul {
@@ -116,513 +76,780 @@
             list-style: none;
         }
         
-        nav ul li {
-            margin-left: 2rem;
-            position: relative;
+        nav li {
+            margin-left: 30px;
         }
         
-        nav ul li a {
-            color: white;
+        nav a {
+            color: var(--light);
             text-decoration: none;
             font-weight: 500;
-            transition: var(--transition);
-            position: relative;
-            display: inline-block;
+            text-transform: uppercase;
+            font-size: 1rem;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            padding: 10px 15px;
+            border-radius: 30px;
         }
         
-        nav ul li a:hover {
-            color: var(--accent);
-        }
-        
-        nav ul li a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background-color: var(--accent);
-            transition: var(--transition);
-        }
-        
-        nav ul li a:hover::after {
-            width: 100%;
-        }
-        
-        .mobile-menu {
-            display: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: white;
-            transition: var(--transition);
-        }
-        
-        .mobile-menu:hover {
-            color: var(--accent);
+        nav a:hover {
+            background: var(--gradient);
+            color: var(--dark);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow);
         }
         
         /* Герой-секция */
         .hero {
             height: 100vh;
-            min-height: 700px;
-            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1436491865332-7a61a109cc05?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1474&q=80') no-repeat center center/cover;
-            color: white;
             display: flex;
-            flex-direction: column;
-            justify-content: center;
             align-items: center;
-            text-align: center;
+            padding: 0 10%;
             position: relative;
             overflow: hidden;
         }
         
-        .hero::before {
+        .hero-content {
+            max-width: 600px;
+            z-index: 10;
+        }
+        
+        .hero h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 4.5rem;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: var(--gradient);
+            color: var(--dark);
+            padding: 15px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-right: 20px;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            box-shadow: var(--shadow);
+        }
+        
+        .btn:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--secondary);
+            color: var(--secondary);
+        }
+        
+        .btn-outline:hover {
+            background: var(--secondary);
+            color: var(--dark);
+        }
+        
+        /* Анимированный самолет */
+        .airplane {
+            position: absolute;
+            top: 50%;
+            right: 5%;
+            width: 500px;
+            height: 300px;
+            transform: translateY(-50%);
+            z-index: 5;
+        }
+        
+        .airplane svg {
+            width: 100%;
+            height: 100%;
+            animation: fly 8s infinite ease-in-out;
+            filter: drop-shadow(0 0 20px rgba(0, 195, 255, 0.5));
+        }
+        
+        @keyframes fly {
+            0%, 100% {
+                transform: translate(0, 0) rotate(0);
+            }
+            25% {
+                transform: translate(-20px, -15px) rotate(-2deg);
+            }
+            50% {
+                transform: translate(10px, 10px) rotate(2deg);
+            }
+            75% {
+                transform: translate(-15px, 5px) rotate(-1deg);
+            }
+        }
+        
+        /* Секции */
+        section {
+            padding: 100px 10%;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 70px;
+            position: relative;
+        }
+        
+        .section-title h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 3rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            display: inline-block;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 5px;
+            background: var(--gradient);
+            margin: 20px auto;
+            border-radius: 10px;
+        }
+        
+        /* Услуги */
+        .services {
+            background-color: rgba(10, 17, 40, 0.7);
+            border-radius: 20px;
+            padding: 50px;
+            backdrop-filter: blur(10px);
+            box-shadow: var(--shadow);
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+        
+        .service-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 40px 30px;
+            text-align: center;
+            transition: all 0.4s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            border-color: var(--secondary);
+        }
+        
+        .service-card::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
-            height: 100%;
-            background: radial-gradient(circle, transparent 0%, rgba(0,0,0,0.7) 100%);
-            z-index: 1;
+            height: 5px;
+            background: var(--gradient);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
         }
         
-        .hero-content {
-            max-width: 800px;
-            z-index: 2;
-            animation: fadeIn 1s ease-out;
-            padding: 0 20px;
+        .service-card:hover::before {
+            transform: scaleX(1);
         }
         
-        .hero h2 {
+        .service-card i {
             font-size: 3.5rem;
-            margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-            line-height: 1.2;
+            margin-bottom: 25px;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
         
-        .hero p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-        }
-        
-        .btn {
-            display: inline-block;
-            background-color: var(--accent);
-            color: var(--dark);
-            padding: 0.8rem 2rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: var(--transition);
-            border: none;
-            cursor: pointer;
-            font-size: 1rem;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .btn:hover {
-            background-color: white;
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-        }
-        
-        .btn:active {
-            transform: translateY(-1px);
-        }
-        
-        .btn-outline {
-            background-color: transparent;
-            border: 2px solid white;
-            color: white;
-            margin-left: 1rem;
-        }
-        
-        .btn-outline:hover {
-            background-color: white;
-            color: var(--dark);
-        }
-        
-        .ripple {
-            position: absolute;
-            background: rgba(255, 255, 255, 0.4);
-            border-radius: 50%;
-            transform: scale(0);
-            animation: ripple 0.6s linear;
-            pointer-events: none;
-        }
-        
-        /* Анимированный самолёт */
-        .airplane {
-            position: absolute;
-            font-size: 3rem;
-            color: white;
-            animation: fly 15s linear infinite;
-            z-index: 1;
-            opacity: 0.8;
-            filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.5));
-        }
-        
-        /* Поиск билетов */
-        .search-section {
-            position: relative;
-            z-index: 10;
-            margin-top: -50px;
-        }
-        
-        .search-container {
-            background-color: white;
-            border-radius: 10px;
-            padding: 2rem;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            animation: fadeIn 1s ease-out 0.5s both;
-        }
-        
-        .search-title {
-            text-align: center;
-            margin-bottom: 2rem;
-            color: var(--secondary);
-        }
-        
-        .search-form {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1rem;
-        }
-        
-        .form-group {
-            margin-bottom: 1rem;
-        }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-            color: var(--secondary);
-        }
-        
-        .form-group input, .form-group select {
-            width: 100%;
-            padding: 0.8rem;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-size: 1rem;
-            transition: var(--transition);
-        }
-        
-        .form-group input:focus, .form-group select:focus {
-            border-color: var(--primary);
-            outline: none;
-            box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.2);
-        }
-        
-        .search-btn {
-            grid-column: 1 / -1;
-            background-color: var(--primary);
-            color: white;
-            border: none;
-            padding: 1rem;
-            border-radius: 5px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: var(--transition);
-        }
-        
-        .search-btn:hover {
-            background-color: var(--secondary);
-        }
-        
-        /* Особенности */
-        .features {
-            background-color: white;
-        }
-        
-        .section-title {
-            text-align: center;
-            margin-bottom: 3rem;
-            color: var(--secondary);
-            font-size: 2.5rem;
-            position: relative;
-            display: inline-block;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-        
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 3px;
-            background-color: var(--accent);
-        }
-        
-        .features-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-        
-        .feature-card {
-            background-color: var(--light);
-            border-radius: 10px;
-            padding: 2rem;
-            text-align: center;
-            transition: var(--transition);
-            animation: fadeIn 1s ease-out;
-            border: 1px solid #eee;
-        }
-        
-        .feature-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-            border-color: var(--primary);
-        }
-        
-        .feature-icon {
-            font-size: 3rem;
-            color: var(--primary);
-            margin-bottom: 1.5rem;
-            transition: var(--transition);
-        }
-        
-        .feature-card:hover .feature-icon {
-            transform: scale(1.1);
+        .service-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
             color: var(--accent);
-        }
-        
-        .feature-card h3 {
-            margin-bottom: 1rem;
-            color: var(--secondary);
-        }
-        
-        /* Популярные направления */
-        .destinations {
-            background-color: var(--light);
-        }
-        
-        .destinations-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-        
-        .destination-card {
-            background-color: white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            transition: var(--transition);
-            animation: fadeIn 1s ease-out;
-        }
-        
-        .destination-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
-        }
-        
-        .destination-img {
-            height: 200px;
-            overflow: hidden;
-            position: relative;
-        }
-        
-        .destination-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s;
-        }
-        
-        .destination-card:hover .destination-img img {
-            transform: scale(1.1);
-        }
-        
-        .destination-info {
-            padding: 1.5rem;
-        }
-        
-        .destination-info h3 {
-            margin-bottom: 0.5rem;
-            color: var(--secondary);
-        }
-        
-        .destination-info p {
-            color: #666;
-            margin-bottom: 1rem;
-        }
-        
-        .price {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--primary);
-            margin-bottom: 1rem;
         }
         
         /* Отзывы */
         .testimonials {
-            background-color: white;
+            background-color: rgba(10, 17, 40, 0.7);
+            border-radius: 20px;
+            padding: 50px;
+            backdrop-filter: blur(10px);
+            box-shadow: var(--shadow);
         }
         
-        .testimonial-slider {
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .testimonial-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
             position: relative;
-            overflow: hidden;
-            padding: 20px 0;
+            transition: all 0.3s ease;
         }
         
-        .testimonial-slide {
-            background-color: var(--light);
-            padding: 2rem;
-            border-radius: 10px;
-            text-align: center;
-            margin: 0 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: var(--transition);
+        .testimonial-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            border-color: var(--primary);
         }
         
-        .testimonial-slide:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        .testimonial-card::before {
+            content: """;
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 5rem;
+            font-family: Georgia, serif;
+            color: rgba(255, 255, 255, 0.1);
+            line-height: 1;
         }
         
-        .testimonial-slide p {
+        .testimonial-content {
+            margin-top: 20px;
             font-style: italic;
-            color: #555;
-            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 2;
         }
         
         .testimonial-author {
             display: flex;
             align-items: center;
-            justify-content: center;
+            margin-top: 20px;
         }
         
-        .author-img {
-            width: 60px;
-            height: 60px;
+        .author-avatar {
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
-            overflow: hidden;
-            margin-right: 1rem;
-            border: 3px solid var(--accent);
-        }
-        
-        .author-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+            background: var(--gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-weight: bold;
+            font-size: 1.2rem;
         }
         
         .author-info h4 {
-            color: var(--secondary);
-            margin-bottom: 0.2rem;
-            text-align: left;
+            font-size: 1.2rem;
+            color: var(--accent);
         }
         
         .author-info p {
-            color: #777;
             font-size: 0.9rem;
-            font-style: normal;
-            text-align: left;
+            opacity: 0.7;
         }
         
-        .swiper-pagination-bullet {
-            width: 12px;
-            height: 12px;
-            background: #ddd;
-            opacity: 1;
-        }
-        
-        .swiper-pagination-bullet-active {
-            background: var(--primary);
+        .rating {
+            color: var(--accent);
+            margin-top: 5px;
         }
         
         /* Подписка */
         .newsletter {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
             text-align: center;
-            position: relative;
-            overflow: hidden;
+            background: var(--gradient);
+            padding: 70px 20%;
+            border-radius: 20px;
+            margin-top: 50px;
         }
         
-        .newsletter::before {
-            content: '';
-            position: absolute;
-            top: -50px;
-            left: -50px;
-            width: 100px;
-            height: 100px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-        }
-        
-        .newsletter::after {
-            content: '';
-            position: absolute;
-            bottom: -80px;
-            right: -60px;
-            width: 200px;
-            height: 200px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-        }
-        
-        .newsletter-container {
-            position: relative;
-            z-index: 2;
-        }
-        
-        .newsletter h2 {
-            margin-bottom: 1.5rem;
+        .newsletter h3 {
             font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--dark);
         }
         
-        .newsletter-form {
+        .newsletter p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            color: rgba(10, 17, 40, 0.9);
+        }
+        
+        .subscribe-form {
             display: flex;
-            max-width: 500px;
+            max-width: 600px;
             margin: 0 auto;
-            border-radius: 50px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
         
-        .newsletter-form input {
+        .subscribe-form input {
             flex: 1;
-            padding: 1rem;
+            padding: 15px 25px;
             border: none;
+            border-radius: 50px 0 0 50px;
             font-size: 1rem;
-        }
-        
-        .newsletter-form input:focus {
             outline: none;
         }
         
-        .newsletter-form button {
-            padding: 1rem 2rem;
-            background-color: var(--accent);
-            color: var(--dark);
+        .subscribe-form button {
+            background: var(--dark);
+            color: var(--light);
             border: none;
-            font-weight: 600;
+            padding: 0 40px;
+            border-radius: 0 50px 50px 0;
+            font-weight: 700;
+            text-transform: uppercase;
             cursor: pointer;
-            transition: var(--transition);
+            transition: all 0.3s ease;
         }
         
-        .newsletter-form button:hover {
-            background-color: white;
+        .subscribe-form button:hover {
+            background: var(--accent);
+            color: var(--dark);
         }
         
         /* Подвал */
         footer {
-            background-color: var(--dark);
-            color: white;
-            padding: 4rem 0 2rem;
-            position: relative;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 70px 10% 30px;
+            border-top: 2px solid var(--accent);
         }
         
-        .footer-container {
+        .footer-content {
             display: grid;
-            grid-template-columns: repeat(auto-fit,
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+            color: var(--accent);
+            position: relative;
+            display: inline-block;
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -10px;
+            width: 50px;
+            height: 3px;
+            background: var(--gradient);
+            border-radius: 3px;
+        }
+        
+        .footer-column p {
+            margin-bottom: 20px;
+            opacity: 0.8;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: var(--gradient);
+            color: var(--dark);
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            transform: translateY(-5px) rotate(10deg);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 15px;
+        }
+        
+        .footer-links a {
+            color: var(--light);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+        }
+        
+        .footer-links a i {
+            margin-right: 10px;
+            color: var(--secondary);
+        }
+        
+        .footer-links a:hover {
+            color: var(--accent);
+            transform: translateX(5px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+        
+        /* Анимации при прокрутке */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+        
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Адаптивность */
+        @media (max-width: 1200px) {
+            .airplane {
+                width: 400px;
+                height: 240px;
+            }
+        }
+        
+        @media (max-width: 992px) {
+            .hero h2 {
+                font-size: 3.5rem;
+            }
+            
+            .airplane {
+                opacity: 0.3;
+                right: -100px;
+            }
+            
+            section {
+                padding: 80px 5%;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+            }
+            
+            .hero {
+                text-align: center;
+                padding: 0 5%;
+            }
+            
+            .hero-content {
+                margin: 0 auto;
+            }
+            
+            .hero-buttons {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn {
+                margin: 10px 0;
+            }
+            
+            .airplane {
+                display: none;
+            }
+        }
+        
+        /* Анимация мигания для привлечения внимания */
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+    </style>
+</head>
+<body>
+    <!-- Шапка -->
+    <header>
+        <div class="logo">
+            <i class="fas fa-rocket"></i>
+            <h1>SkyJet</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#home">Главная</a></li>
+                <li><a href="#services">Услуги</a></li>
+                <li><a href="#testimonials">Отзывы</a></li>
+                <li><a href="#contact">Контакты</a></li>
+                <li><a href="#" class="btn">Забронировать</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Герой-секция -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h2>ПОКОРИ НЕБО С НАМИ</h2>
+            <p>Самые современные авиалайнеры, роскошные салоны и непревзойденный сервис. Ваше путешествие начинается здесь!</p>
+            <div class="hero-buttons">
+                <a href="#" class="btn pulse">Забронировать рейс</a>
+                <a href="#services" class="btn btn-outline">Наши услуги</a>
+            </div>
+        </div>
+        <div class="airplane">
+            <svg viewBox="0 0 500 300">
+                <path d="M470,150 C440,100 400,80 350,100 C300,120 250,180 200,170 C150,160 100,100 50,120 L50,180 L100,180 L120,160 L140,180 L160,160 L180,180 L200,160 L220,180 L240,160 L260,180 L280,160 L300,180 L320,160 L340,180 L360,160 L380,180 L400,160 L420,180 L440,160 L460,180 L470,170 Z" fill="#00c3ff"/>
+                <path d="M100,150 L150,140 L170,160 L190,140 L210,160 L230,140 L250,160 L270,140 L290,160 L310,140 L330,160 L350,140 L370,160 L390,140 L410,160 L430,140 L450,150" stroke="#ffd300" stroke-width="5" fill="none"/>
+                <circle cx="120" cy="150" r="15" fill="#ff3e7f"/>
+                <circle cx="250" cy="150" r="20" fill="#ffd300"/>
+                <circle cx="380" cy="150" r="15" fill="#ff3e7f"/>
+            </svg>
+        </div>
+    </section>
+
+    <!-- Услуги -->
+    <section id="services">
+        <div class="section-title">
+            <h2>Наши Премиум Услуги</h2>
+        </div>
+        <div class="services">
+            <div class="services-grid">
+                <div class="service-card animate-on-scroll">
+                    <i class="fas fa-crown"></i>
+                    <h3>Бизнес Класс</h3>
+                    <p>Просторные кресла, превращающиеся в кровати, изысканное питание и персональный сервис.</p>
+                    <a href="#" class="btn">Подробнее</a>
+                </div>
+                <div class="service-card animate-on-scroll">
+                    <i class="fas fa-globe-americas"></i>
+                    <h3>Направления</h3>
+                    <p>Более 200 направлений по всему миру. От Парижа до Токио - мы доставим вас в любую точку мира.</p>
+                    <a href="#" class="btn">Найти рейс</a>
+                </div>
+                <div class="service-card animate-on-scroll">
+                    <i class="fas fa-gift"></i>
+                    <h3>SkyJet Привилегии</h3>
+                    <p>Эксклюзивные бонусы, бесплатные апгрейды и специальные предложения для постоянных клиентов.</p>
+                    <a href="#" class="btn">Присоединиться</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Отзывы -->
+    <section id="testimonials">
+        <div class="section-title">
+            <h2>Отзывы Пассажиров</h2>
+        </div>
+        <div class="testimonials">
+            <div class="testimonials-grid">
+                <div class="testimonial-card animate-on-scroll">
+                    <div class="testimonial-content">
+                        <p>Летал бизнес-классом в Нью-Йорк. Сервис на высшем уровне! Кресло очень удобное, еда — как в ресторане, а стюардессы всегда внимательны. Обязательно полечу снова!</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">АИ</div>
+                        <div class="author-info">
+                            <h4>Алексей Иванов</h4>
+                            <p>Частый путешественник</p>
+                            <div class="rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card animate-on-scroll">
+                    <div class="testimonial-content">
+                        <p>Впервые летела с SkyJet и была приятно удивлена. Современный самолет, чистый салон, развлечения на борту на высоте. Прилетели точно по расписанию. Рекомендую!</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">ЕС</div>
+                        <div class="author-info">
+                            <h4>Екатерина Смирнова</h4>
+                            <p>Блогер-путешественник</p>
+                            <div class="rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card animate-on-scroll">
+                    <div class="testimonial-content">
+                        <p>Лучший перелет в моей жизни! Спасибо за бесплатный апгрейд в бизнес-класс. Персонал очень дружелюбный и профессиональный. SkyJet — мой выбор для всех будущих поездок.</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">ДК</div>
+                        <div class="author-info">
+                            <h4>Дмитрий Козлов</h4>
+                            <p>Предприниматель</p>
+                            <div class="rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Подписка -->
+    <section>
+        <div class="newsletter">
+            <h3>Подпишитесь на SkyJet Новости</h3>
+            <p>Получайте эксклюзивные предложения, новости о новых направлениях и специальные скидки</p>
+            <form class="subscribe-form">
+                <input type="email" placeholder="Ваш email" required>
+                <button type="submit">Подписаться</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Подвал -->
+    <footer id="contact">
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>SkyJet</h3>
+                <p>Мы делаем ваши путешествия незабываемыми. Современный флот, высочайший уровень сервиса и безопасность — наши главные приоритеты.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h3>Ссылки</h3>
+                <ul class="footer-links">
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Главная</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> О нас</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Услуги</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Направления</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Контакты</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Контакты</h3>
+                <ul class="footer-links">
+                    <li><a href="#"><i class="fas fa-map-marker-alt"></i> Москва, ул. Воздушная, 15</a></li>
+                    <li><a href="tel:+74951234567"><i class="fas fa-phone"></i> +7 (495) 123-45-67</a></li>
+                    <li><a href="mailto:info@skyjet.com"><i class="fas fa-envelope"></i> info@skyjet.com</a></li>
+                    <li><a href="#"><i class="fas fa-plane-departure"></i> Онлайн-бронирование</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2023 SkyJet Airlines. Все права защищены. Полеты в будущее уже сегодня!</p>
+        </div>
+    </footer>
+
+    <script>
+        // Анимация при прокрутке
+        document.addEventListener('DOMContentLoaded', function() {
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, observerOptions);
+            
+            document.querySelectorAll('.animate-on-scroll').forEach(el => {
+                observer.observe(el);
+            });
+            
+            // Плавная прокрутка
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+            
+            // Обработка формы подписки
+            const subscribeForm = document.querySelector('.subscribe-form');
+            if (subscribeForm) {
+                subscribeForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const emailInput = this.querySelector('input[type="email"]');
+                    
+                    if (emailInput.value) {
+                        alert('Спасибо за подписку! На адрес ' + emailInput.value + ' отправлено письмо с подтверждением.');
+                        emailInput.value = '';
+                    }
+                });
+            }
+            
+            // Анимация кнопок
+            document.querySelectorAll('.btn').forEach(button => {
+                button.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-5px) scale(1.05)';
+                });
+                
+                button.addEventListener('mouseleave', function() {
+                    this.style.transform = '';
+                });
+            });
+        });
+    </script>
+</body>
+</html>
